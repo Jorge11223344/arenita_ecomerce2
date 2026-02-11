@@ -1,13 +1,87 @@
-<!-- templates/payments/redirect.html
-<form method="post" action="{{ action }}">
-  <input type="hidden" name="token_ws" value="{{ token }}">
-  <noscript><button type="submit">Ir a pagar</button></noscript>
-  <script>document.forms[0].submit()</script>
-</form> -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirigiendo a Webpay...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            margin: 10px 0;
+        }
+        .webpay-logo {
+            width: 150px;
+            margin: 20px auto;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔒 Redirigiendo a Webpay Plus</h2>
+        <div class="spinner"></div>
+        <p>Por favor espera mientras te redirigimos al portal de pago seguro de Transbank.</p>
+        <p><small>No cierres esta ventana.</small></p>
+        
+        <form id="webpay-form" method="POST" action="{{ action }}">
+            <input type="hidden" name="token_ws" value="{{ token }}">
+            <noscript>
+                <p style="color: #e74c3c;">JavaScript está deshabilitado.</p>
+                <button type="submit">Continuar al pago manualmente</button>
+            </noscript>
+        </form>
+    </div>
 
-
-<form method="post" action="{{ action }}">
-  <input type="hidden" name="token_ws" value="{{ token }}">
-  <noscript><button type="submit">Continuar a Webpay</button></noscript>
-</form>
-<script>document.forms[0].submit();</script>
+    <script>
+        // Auto-submit inmediatamente
+        document.getElementById('webpay-form').submit();
+    </script>
+</body>
+</html>

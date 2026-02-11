@@ -17,6 +17,14 @@ def checkout(request):
     if len(cart) == 0:
         messages.info(request, "Tu carro está vacío.")
         return redirect('cart_detail')
+    
+    print("=== CHECKOUT DEBUG ===")
+    print("HOST:", request.get_host())
+    print("ORIGIN:", request.headers.get("Origin"))
+    print("REFERER:", request.headers.get("Referer"))
+
+
+
 
     if request.method == 'POST':
         form = CheckoutForm(request.POST)

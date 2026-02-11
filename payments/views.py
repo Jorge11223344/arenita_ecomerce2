@@ -61,8 +61,8 @@ def webpay_init(request, order_id):
     order.buy_order = buy_order
     order.save(update_fields=["buy_order"])
 
-    public_base = os.getenv("PUBLIC_BASE_URL", "").rstrip("/")
-    return_url = f"{public_base}{reverse('webpay_return')}"
+    
+    return_url = request.build_absolute_uri(reverse("webpay_return"))
 
     tx = _tbk_tx()
     resp = tx.create(buy_order, session_id, amount, return_url)
