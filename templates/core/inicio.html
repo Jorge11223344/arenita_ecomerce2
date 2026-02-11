@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{# ---- Hero con imagen de fondo ---- #}
+<section class="hero d-flex align-items-center text-center text-white"
+         style="background: url('{% static "img/hero-cat.jpg" %}') center/cover no-repeat; min-height: 40vh;">
+  <div class="container py-5 bg-dark bg-opacity-50 rounded-4">
+    <h1 class="display-4 fw-bold">Arena Sanitaria Premium</h1>
+    <p class="lead">Máxima absorción, control de olores y comodidad para tu gato.</p>
+    <a class="btn btn-lg btn-light mt-3 shadow" href="/tienda/">Comprar ahora</a>
+  </div>
+</section>
+
+{# ---- Beneficios con imágenes ---- #}
+<section class="container py-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0">
+        <img src="{% static 'img/grumos.jpg' %}" class="card-img-top" alt="Aglomeración superior">
+        <div class="card-body text-center">
+          <h5 class="card-title">Aglomeración superior</h5>
+          <p class="card-text">Granos finos que forman grumos firmes para limpieza fácil.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0">
+        <img src="{% static 'img/bajo-polvo.jpg' %}" class="card-img-top" alt="Bajo polvo">
+        <div class="card-body text-center">
+          <h5 class="card-title">Bajo polvo</h5>
+          <p class="card-text">Seguro para gatos sensibles y hogares con niños.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0">
+        <img src="{% static 'img/control-olores.jpg' %}" class="card-img-top" alt="Control de olores">
+        <div class="card-body text-center">
+          <h5 class="card-title">Control de olores</h5>
+          <p class="card-text">Neutraliza malos olores de forma natural y prolongada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

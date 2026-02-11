@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{# Hero con imagen de fondo #}
+<section class="position-relative text-white text-center py-5" 
+         style="background: linear-gradient(135deg, rgba(99,102,241,0.9), rgba(236,72,153,0.8)), 
+                url('{% static "img/arena-huasa.jpg" %}') center/cover; 
+                min-height: 50vh;">
+  <div class="container py-5">
+    <span class="badge bg-light text-primary px-4 py-2 mb-3">Sobre nosotros</span>
+    <h1 class="display-3 fw-bold mb-3">Arenita</h1>
+    <p class="lead fs-4 mb-0">
+      Cuidando de tu gato con arena sanitaria de calidad premium
+    </p>
+  </div>
+</section>
+
+{# Nuestra historia #}
+<section class="container py-5">
+  <div class="row align-items-center g-5">
+    <div class="col-lg-6">
+      <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-3">Nuestra historia</span>
+      <h2 class="display-5 fw-bold mb-4">
+        Pasión por el bienestar felino
+      </h2>
+      <p class="text-muted lh-lg fs-5 mb-4">
+        Arenita nació de la necesidad de encontrar una <strong>arena sanitaria de calidad</strong> 
+        que realmente cumpliera con las expectativas de los dueños de gatos y, sobre todo, 
+        con la comodidad de nuestros felinos.
+      </p>
+      <p class="text-muted lh-lg mb-4">
+        Tras años de experiencia y búsqueda, decidimos crear nuestra propia marca, 
+        enfocándonos en tres pilares fundamentales: <strong>absorción superior</strong>, 
+        <strong>control efectivo de olores</strong> y <strong>bajo nivel de polvo</strong>.
+      </p>
+      <div class="d-flex gap-3">
+        <a href="/tienda/" class="btn btn-primary btn-lg">
+          Ver productos
+        </a>
+        <a href="/contacto/" class="btn btn-outline-primary btn-lg">
+          Contáctanos
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="position-relative">
+        <img src="{% static 'img/casa.jpg' %}" 
+             alt="Gato feliz" 
+             class="img-fluid rounded-4 shadow-lg w-100"
+             style="object-fit: cover; max-height: 500px;">
+        <div class="position-absolute bottom-0 start-0 m-4 bg-white rounded-3 p-4 shadow">
+          <div class="d-flex gap-3">
+            <div>
+              <h3 class="fw-bold text-primary mb-0">2,500+</h3>
+              <small class="text-muted">Clientes felices</small>
+            </div>
+            <div class="border-start ps-3">
+              <h3 class="fw-bold text-primary mb-0">4.8★</h3>
+              <small class="text-muted">Valoración</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Nuestros valores #}
+<section class="bg-gradient py-5">
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <span class="badge bg-primary px-3 py-2 mb-3">Nuestros valores</span>
+      <h2 class="display-5 fw-bold mb-3">Lo que nos define</h2>
+      <p class="lead text-muted">
+        Principios que guían cada decisión y acción en Arenita
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm text-center">
+          <div class="card-body p-4">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+              <span class="fs-1">🐾</span>
+            </div>
+            <h5 class="fw-bold mb-3">Amor por los gatos</h5>
+            <p class="text-muted small">
+              Todo lo que hacemos está pensado en el bienestar y felicidad de tu mascota
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm text-center">
+          <div class="card-body p-4">
+            <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+              <span class="fs-1">✨</span>
+            </div>
+            <h5 class="fw-bold mb-3">Calidad premium</h5>
+            <p class="text-muted small">
+              Seleccionamos solo los mejores materiales para garantizar un producto superior
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm text-center">
+          <div class="card-body p-4">
+            <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+              <span class="fs-1">🌿</span>
+            </div>
+            <h5 class="fw-bold mb-3">Eco-responsabilidad</h5>
+            <p class="text-muted small">
+              Productos 100% naturales y biodegradables, cuidando nuestro planeta
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm text-center">
+          <div class="card-body p-4">
+            <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3">
+              <span class="fs-1">💯</span>
+            </div>
+            <h5 class="fw-bold mb-3">Transparencia</h5>
+            <p class="text-muted small">
+              Información clara sobre nuestros productos y procesos de fabricación
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Por qué elegirnos #}
+<section class="container py-5">
+  <div class="text-center mb-5">
+    <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-3">Ventajas</span>
+    <h2 class="display-5 fw-bold mb-3">¿Por qué elegir Arenita?</h2>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="card border-primary border-2 h-100">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center mb-3">
+            <span class="fs-2 me-3">🔬</span>
+            <h5 class="fw-bold mb-0">Tecnología avanzada</h5>
+          </div>
+          <p class="text-muted">
+            Utilizamos procesos de fabricación modernos que garantizan 
+            una <strong>aglomeración superior</strong> y mayor duración del producto.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card border-success border-2 h-100">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center mb-3">
+            <span class="fs-2 me-3">🌬️</span>
+            <h5 class="fw-bold mb-0">Bajo polvo certificado</h5>
+          </div>
+          <p class="text-muted">
+            Nuestra arena genera <strong>99% menos polvo</strong>, ideal para gatos 
+            sensibles y hogares con alergias.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card border-warning border-2 h-100">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center mb-3">
+            <span class="fs-2 me-3">💨</span>
+            <h5 class="fw-bold mb-0">Control de olores 24h</h5>
+          </div>
+          <p class="text-muted">
+            Fórmula con <strong>neutralizadores naturales</strong> que mantienen 
+            tu hogar fresco por hasta 48 horas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Compromiso ambiental #}
+<section class="bg-success bg-opacity-10 py-5">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-lg-2">
+        <img src="{% static 'img/arena-huasa.jpg' %}" 
+             alt="Compromiso ambiental" 
+             class="img-fluid rounded-4 shadow">
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <span class="badge bg-success px-3 py-2 mb-3">🌍 Compromiso ambiental</span>
+        <h2 class="display-6 fw-bold mb-4">
+          Cuidamos el planeta que compartimos
+        </h2>
+        <div class="mb-3">
+          <h5 class="fw-bold d-flex align-items-center mb-2">
+            <span class="text-success me-2">✓</span>
+            100% biodegradable
+          </h5>
+          <p class="text-muted ps-4">
+            Nuestra arena se descompone naturalmente sin dañar el medio ambiente
+          </p>
+        </div>
+        <div class="mb-3">
+          <h5 class="fw-bold d-flex align-items-center mb-2">
+            <span class="text-success me-2">✓</span>
+            Empaques reciclables
+          </h5>
+          <p class="text-muted ps-4">
+            Utilizamos materiales reciclables en todos nuestros empaques
+          </p>
+        </div>
+        <div class="mb-3">
+          <h5 class="fw-bold d-flex align-items-center mb-2">
+            <span class="text-success me-2">✓</span>
+            Producción responsable
+          </h5>
+          <p class="text-muted ps-4">
+            Procesos que minimizan el impacto ambiental y la huella de carbono
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Cobertura y servicio #}
+<section class="container py-5">
+  <div class="row align-items-center g-5">
+    <div class="col-lg-6">
+      <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-3">Cobertura</span>
+      <h2 class="display-6 fw-bold mb-4">
+        Servicio en el Gran Concepción
+      </h2>
+      <p class="text-muted lh-lg mb-4">
+        Actualmente realizamos despachos en las comunas de <strong>Concepción, Hualpén, 
+        San Pedro de la Paz</strong> y <strong>Talcahuano</strong>.
+      </p>
+      <div class="card border-0 bg-light mb-3">
+        <div class="card-body p-4">
+          <h5 class="fw-bold mb-3">Beneficios de comprar con nosotros:</h5>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">🚚 Despacho en 24-48 horas</li>
+            <li class="mb-2">💳 Pago seguro con Webpay</li>
+            <li class="mb-2">📦 Envío gratis sobre $15.000</li>
+            <li class="mb-2">↩️ Cambios y devoluciones gratis</li>
+            <li class="mb-0">💬 Soporte por WhatsApp</li>
+          </ul>
+        </div>
+      </div>
+      <a href="/tienda/" class="btn btn-primary btn-lg">
+        Comprar ahora
+      </a>
+    </div>
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body p-5 text-center">
+          <div class="fs-1 mb-3">📍</div>
+          <h4 class="fw-bold mb-3">¿Estás en otra zona?</h4>
+          <p class="text-muted mb-4">
+            Estamos trabajando para expandir nuestra cobertura. 
+            Déjanos tu correo y te avisaremos cuando lleguemos a tu comuna.
+          </p>
+          <form class="needs-validation" novalidate>
+            <div class="input-group mb-3">
+              <input type="email" 
+                     class="form-control form-control-lg" 
+                     placeholder="tu@correo.com"
+                     required>
+              <button class="btn btn-primary px-4" type="submit">
+                Notificarme
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# CTA Final #}
+<section class="bg-primary text-white py-5">
+  <div class="container text-center py-5">
+    <h2 class="display-5 fw-bold mb-4">
+      ¿Listo para mejorar la vida de tu gato?
+    </h2>
+    <p class="lead mb-4">
+      Únete a miles de dueños satisfechos que confían en Arenita
+    </p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="/tienda/" class="btn btn-light btn-lg px-5">
+        Ver productos
+      </a>
+      <a href="https://wa.me/56955335716" 
+         class="btn btn-outline-light btn-lg px-5"
+         target="_blank">
+        Contáctanos
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+<!-- templates/payments/redirect.html
+<form method="post" action="{{ action }}">
+  <input type="hidden" name="token_ws" value="{{ token }}">
+  <noscript><button type="submit">Ir a pagar</button></noscript>
+  <script>document.forms[0].submit()</script>
+</form> -->
+
+
+<form method="post" action="{{ action }}">
+  <input type="hidden" name="token_ws" value="{{ token }}">
+  <noscript><button type="submit">Continuar a Webpay</button></noscript>
+</form>
+<script>document.forms[0].submit();</script>

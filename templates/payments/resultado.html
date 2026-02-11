@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Resultado del pago</h1>
+
+  {% if ok %}
+    <div class="alert alert-success">Pago aprobado ✅</div>
+  {% else %}
+    <div class="alert alert-danger">Pago no aprobado ❌</div>
+  {% endif %}
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <p><strong>Orden:</strong> {{ resp.buy_order|default:"—" }}</p>
+      <p><strong>Monto:</strong> ${{ resp.amount|default_if_none:"0"|floatformat:0 }}</p>
+      <p><strong>Autorización:</strong> {{ resp.authorization_code|default:"—" }}</p>
+
+      <p>
+        <strong>Tarjeta:</strong>
+        {% if resp.card_detail.card_number %}
+          **** **** **** {{ resp.card_detail.card_number }}
+        {% else %}
+          —
+        {% endif %}
+      </p>
+
+      <p class="mb-0">
+        <strong>Estado:</strong>
+        {{ resp.status|default:"—" }}
+        {% if resp.response_code != None %}
+          (code={{ resp.response_code }})
+        {% endif %}
+      </p>
+    </div>
+  </div>
+
+  {# Opcional: mostrar id interno de la orden si existe #}
+  {% if order %}
+    <p class="mt-3 text-muted small mb-0">
+      Orden interna: #{{ order.id }} — Estado en sistema: {{ order.estado }}
+    </p>
+  {% endif %}
+
+  <a class="btn btn-primary mt-4" href="{% url 'tienda' %}">Seguir comprando</a>
+</div>
+{% endblock %}

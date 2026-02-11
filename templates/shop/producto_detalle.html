@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{# Breadcrumb #}
+<section class="bg-light py-3">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/tienda/" class="text-decoration-none">Tienda</a></li>
+        <li class="breadcrumb-item active">{{ producto.nombre }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+{# Producto principal #}
+<div class="container py-5">
+  <div class="row g-5">
+    
+    {# Columna izquierda - Imagen #}
+    <div class="col-lg-6">
+      <div class="product-image-container sticky-top" style="top: 100px;">
+        {% if producto.imagen %}
+          <img class="img-fluid rounded-4 shadow-lg w-100" 
+               src="{{ producto.imagen.url }}" 
+               alt="{{ producto.nombre }}"
+               style="object-fit: cover; max-height: 600px;">
+        {% else %}
+          <div class="ratio ratio-1x1 bg-light rounded-4 d-flex align-items-center justify-content-center shadow">
+            <div class="text-center p-5">
+              <span class="display-1">📦</span>
+              <p class="text-muted mt-3">{{ producto.nombre }}</p>
+            </div>
+          </div>
+        {% endif %}
+        
+        {# Mini galería (si tuvieras más imágenes) #}
+        <div class="d-flex gap-2 mt-3">
+          {% if producto.imagen %}
+            <div class="border border-primary rounded p-1" style="width: 80px; height: 80px;">
+              <img src="{{ producto.imagen.url }}" class="w-100 h-100 object-fit-cover rounded">
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {# Columna derecha - Información #}
+    <div class="col-lg-6">
+      
+      {# Badge de categoría #}
+      <div class="mb-3">
+        <span class="badge bg-primary-subtle text-primary px-3 py-2">
+          {{ producto.categoria.nombre }}
+        </span>
+        {% if producto.sku %}
+          <span class="badge bg-light text-muted px-3 py-2 ms-2">
+            SKU: {{ producto.sku }}
+          </span>
+        {% endif %}
+      </div>
+
+      {# Título #}
+      <h1 class="display-5 fw-bold mb-3">{{ producto.nombre }}</h1>
+
+      {# Rating #}
+      <div class="d-flex align-items-center mb-4">
+        <div class="text-warning me-2">
+          <span class="fs-5">★★★★★</span>
+        </div>
+        <span class="text-muted">(4.8) · 127 valoraciones</span>
+      </div>
+
+      {# Precio destacado #}
+      <div class="bg-primary bg-opacity-10 rounded-3 p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <small class="text-muted d-block mb-1">Precio</small>
+            <h2 class="display-4 fw-bold text-primary mb-0">
+              ${{ producto.precio|floatformat:0 }}
+            </h2>
+            <small class="text-muted">IVA incluido</small>
+          </div>
+          <div class="text-end">
+            <div class="badge bg-success fs-6 px-3 py-2">
+              🚚 Envío Gratis<br>
+              <small>sobre $15.000</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Características rápidas #}
+      <div class="row g-3 mb-4">
+        <div class="col-6">
+          <div class="border rounded-3 p-3 text-center">
+            <div class="fs-3 mb-2">📦</div>
+            <div class="fw-semibold">{{ producto.peso_kg }} kg</div>
+            <small class="text-muted">Peso neto</small>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="border rounded-3 p-3 text-center">
+            <div class="fs-3 mb-2">⚡</div>
+            <div class="fw-semibold">24-48h</div>
+            <small class="text-muted">Despacho</small>
+          </div>
+        </div>
+      </div>
+
+      {# Descripción #}
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">Descripción</h5>
+        <p class="text-muted lh-lg">{{ producto.descripcion|default:"Arena sanitaria premium de alta calidad." }}</p>
+      </div>
+
+      {# Beneficios en lista #}
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">Beneficios</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <span class="text-success me-2">✓</span>
+            <strong>Aglomeración superior</strong> - Limpieza fácil y rápida
+          </li>
+          <li class="mb-2">
+            <span class="text-success me-2">✓</span>
+            <strong>Bajo polvo</strong> - Ideal para gatos sensibles
+          </li>
+          <li class="mb-2">
+            <span class="text-success me-2">✓</span>
+            <strong>Control de olores 24h</strong> - Neutralización natural
+          </li>
+          <li class="mb-2">
+            <span class="text-success me-2">✓</span>
+            <strong>100% natural</strong> - Ecológico y biodegradable
+          </li>
+        </ul>
+      </div>
+
+      {# Formulario de agregar al carro #}
+      <form action="{% url 'cart_add' producto.id %}" method="post">
+        {% csrf_token %}
+        
+        <div class="card border-2 border-primary shadow-sm mb-4">
+          <div class="card-body p-4">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Cantidad</label>
+                <select name="quantity" class="form-select form-select-lg">
+                  <option value="1">1 unidad</option>
+                  <option value="2">2 unidades</option>
+                  <option value="3">3 unidades</option>
+                  <option value="4">4 unidades</option>
+                  <option value="5">5 unidades</option>
+                  <option value="10">10 unidades</option>
+                </select>
+              </div>
+              <div class="col-md-8">
+                <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
+                  <span class="fs-5">🛒</span> Agregar al carro
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <input type="hidden" name="update" value="False">
+      </form>
+
+      {# Garantías #}
+      <div class="row g-2 text-muted small">
+        <div class="col-6">
+          <div class="d-flex align-items-center">
+            <span class="me-2">🔒</span>
+            <span>Pago 100% seguro</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="d-flex align-items-center">
+            <span class="me-2">↩️</span>
+            <span>Cambios y devoluciones</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="d-flex align-items-center">
+            <span class="me-2">💳</span>
+            <span>Webpay y tarjetas</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="d-flex align-items-center">
+            <span class="me-2">📞</span>
+            <span>Soporte 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      {# CTA WhatsApp #}
+      <div class="alert alert-info mt-4 border-0 shadow-sm">
+        <div class="d-flex align-items-center">
+          <span class="fs-3 me-3">💬</span>
+          <div>
+            <strong>¿Necesitas ayuda?</strong><br>
+            <small>Contáctanos por WhatsApp y te asesoramos</small>
+          </div>
+          <a href="https://wa.me/56955335716" 
+             class="btn btn-success ms-auto" 
+             target="_blank">
+            Chatear
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# Sección de información adicional #}
+  <div class="row mt-5 pt-5 border-top">
+    <div class="col-12">
+      <ul class="nav nav-tabs border-0 mb-4" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active border-0 fw-semibold" 
+                  data-bs-toggle="tab" 
+                  data-bs-target="#specs">
+            Especificaciones
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link border-0 fw-semibold" 
+                  data-bs-toggle="tab" 
+                  data-bs-target="#uso">
+            Modo de uso
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link border-0 fw-semibold" 
+                  data-bs-toggle="tab" 
+                  data-bs-target="#envio">
+            Envío y entrega
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="specs">
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table">
+                <tr><td class="fw-semibold">SKU:</td><td>{{ producto.sku|default:"-" }}</td></tr>
+                <tr><td class="fw-semibold">Peso:</td><td>{{ producto.peso_kg }} kg</td></tr>
+                <tr><td class="fw-semibold">Categoría:</td><td>{{ producto.categoria.nombre }}</td></tr>
+                <tr><td class="fw-semibold">Material:</td><td>Arena natural</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="uso">
+          <ol class="lh-lg">
+            <li>Vierte 7-10 cm de arena en la bandeja sanitaria limpia</li>
+            <li>Retira los grumos diariamente con una pala</li>
+            <li>Rellena según sea necesario para mantener el nivel</li>
+            <li>Reemplaza toda la arena cada 2-3 semanas</li>
+          </ol>
+        </div>
+
+        <div class="tab-pane fade" id="envio">
+          <p class="mb-3">📍 <strong>Cobertura:</strong> Gran Concepción (Concepción, Hualpén, San Pedro, Talcahuano)</p>
+          <p class="mb-3">⏰ <strong>Tiempo de despacho:</strong> 24-48 horas hábiles</p>
+          <p class="mb-3">💰 <strong>Costo:</strong> $2.990 (Gratis en compras sobre $15.000)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .nav-tabs .nav-link {
+    color: var(--gray-700);
+  }
+  .nav-tabs .nav-link.active {
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary) !important;
+  }
+</style>
+
+{% endblock %}
